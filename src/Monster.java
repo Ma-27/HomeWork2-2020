@@ -2,6 +2,8 @@ import java.util.Scanner;
 
 public class Monster extends Person {
     private final int aggresivePower;
+    //获取life value的差值，也就是攻击后减掉的部分
+    int delta;
 
     public Monster() {
         super();
@@ -15,8 +17,23 @@ public class Monster extends Person {
         aggresivePower = scanner.nextInt();
     }
 
-    public int getAggresivePower() {
-        return aggresivePower;
+    void attack(MainCharacter instance) {
+        int lifeValue = instance.getLifeValue();
+        lifeValue = lifeValue - aggresivePower + instance.defensivePower;
+        instance.setMainCharacterLifeValue(lifeValue);
+    }
+
+    public int getLifeValue() {
+        return lifeValue;
+    }
+
+    void setMonsterLifeValue(int lifeValue) {
+        delta = this.lifeValue - lifeValue;
+        this.lifeValue = lifeValue;
+    }
+
+    public int getDelta() {
+        return delta;
     }
 
 }
