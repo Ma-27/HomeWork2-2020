@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class MainCharacter extends Person {
@@ -13,13 +14,23 @@ public class MainCharacter extends Person {
         Scanner scanner = new Scanner(System.in);
         System.out.println("请输入主角名称：");
         name = scanner.nextLine();
-        System.out.println("请输入主角生命值：");
-        lifeValue = scanner.nextInt();
 
-        System.out.println("请输入主角攻击力：");
-        aggresivePower = scanner.nextInt();
-        System.out.println("请输入主角防御力：");
-        defensivePower = scanner.nextInt();
+        //对输入的生命值添加异常处理
+        try {
+            System.out.println("请输入主角生命值：");
+            lifeValue = scanner.nextInt();
+
+            System.out.println("请输入主角攻击力：");
+            aggresivePower = scanner.nextInt();
+
+            System.out.println("请输入主角防御力：");
+            defensivePower = scanner.nextInt();
+        } catch (InputMismatchException e) {
+            System.out.println("你输入的不是数字，请重新启动游戏");
+            System.exit(-1);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     void attack(Monster instance) {
